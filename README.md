@@ -47,6 +47,7 @@ python3 -m http.server 8000
 
 - **Content**: Based on research from [moltbot/moltbot](https://github.com/moltbot/moltbot)
 - **Design**: Swiss Minimal aesthetic with Crimson Pro + Switzer typography
+- **Skill**: Built using [frontend-slides](https://github.com/zarazhangrui/frontend-slides) — a skill for creating zero-dependency, animation-rich HTML presentations
 - **Built with**: Vanilla HTML/CSS/JS (zero dependencies)
 
 ## License
