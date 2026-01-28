@@ -4,7 +4,7 @@ A 24-slide internal presentation about [Moltbot](https://github.com/moltbot/molt
 
 ## View the Presentation
 
-🎞️ **[View Live Presentation](https://YOUR_USERNAME.github.io/YOUR_REPO_NAME/)**
+🎞️ **[View Live Presentation](https://tantk.github.io/moltbot-presentation/)**
 
 ## About This Presentation
 
