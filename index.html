@@ -2,30 +2,37 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moltbot: The Rise of Local-First AI Assistants</title>
-    <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=switzer@100,200,300,400,500,600,700&display=swap">
-    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#0a1628">
+    <title>Moltbot: The Rise of Local-First AI Assistants 🦞</title>
+    <link rel="preconnect" href="https://api.fontshare.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=clash-display@200,300,400,500,600,700&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         /* ===========================================
-           CSS CUSTOM PROPERTIES (THEME)
+           DEEP OCEAN THEME - CSS CUSTOM PROPERTIES
            =========================================== */
         :root {
-            --bg-primary: #fafaf9;
-            --bg-secondary: #f5f5f4;
-            --bg-tertiary: #e7e5e4;
-            --accent: #dc2626;
-            --accent-light: #fca5a5;
-            --text-primary: #1c1917;
-            --text-secondary: #57534e;
-            --text-muted: #a8a29e;
-            --text-light: #d6d3d1;
+            --ocean-deep: #0a1628;
+            --ocean-mid: #0d1f35;
+            --ocean-light: #142945;
+            --lobster-red: #ff6b4a;
+            --lobster-dark: #e74c3c;
+            --coral: #ff8a65;
+            --teal: #00d4aa;
+            --teal-glow: rgba(0, 212, 170, 0.3);
+            --foam: #e8f4f8;
+            --foam-dim: #b8c5d0;
+            --foam-muted: #7a8a9a;
             
-            --font-display: 'Crimson Pro', serif;
-            --font-body: 'Switzer', sans-serif;
+            --font-display: 'Clash Display', sans-serif;
+            --font-body: 'Space Grotesk', sans-serif;
             
-            --slide-padding: clamp(2rem, 5vw, 5rem);
+            --slide-padding: clamp(1rem, 4vw, 3rem);
             --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+            --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
             --duration-normal: 0.6s;
         }
 
@@ -36,25 +43,90 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
 
         html {
             scroll-behavior: smooth;
             scroll-snap-type: y mandatory;
+            font-size: 16px;
         }
 
         body {
             font-family: var(--font-body);
-            background: var(--bg-primary);
-            color: var(--text-primary);
+            background: var(--ocean-deep);
+            color: var(--foam);
             line-height: 1.6;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ===========================================
+           ANIMATED OCEAN BACKGROUND
+           =========================================== */
+        .ocean-bg {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .ocean-gradient {
+            position: absolute;
+            inset: 0;
+            background: 
+                radial-gradient(ellipse 80% 50% at 50% 100%, var(--ocean-mid) 0%, transparent 70%),
+                radial-gradient(ellipse 60% 40% at 80% 0%, rgba(0, 212, 170, 0.08) 0%, transparent 60%),
+                radial-gradient(ellipse 40% 30% at 20% 30%, rgba(255, 107, 74, 0.05) 0%, transparent 50%),
+                var(--ocean-deep);
+        }
+
+        .bubbles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .bubble {
+            position: absolute;
+            bottom: -20px;
+            background: rgba(0, 212, 170, 0.1);
+            border-radius: 50%;
+            animation: rise 15s infinite ease-in;
+        }
+
+        .bubble:nth-child(1) { left: 10%; width: 8px; height: 8px; animation-duration: 12s; animation-delay: 0s; }
+        .bubble:nth-child(2) { left: 20%; width: 12px; height: 12px; animation-duration: 18s; animation-delay: 2s; }
+        .bubble:nth-child(3) { left: 35%; width: 6px; height: 6px; animation-duration: 10s; animation-delay: 4s; }
+        .bubble:nth-child(4) { left: 50%; width: 15px; height: 15px; animation-duration: 20s; animation-delay: 1s; }
+        .bubble:nth-child(5) { left: 65%; width: 10px; height: 10px; animation-duration: 14s; animation-delay: 3s; }
+        .bubble:nth-child(6) { left: 80%; width: 7px; height: 7px; animation-duration: 16s; animation-delay: 5s; }
+        .bubble:nth-child(7) { left: 90%; width: 11px; height: 11px; animation-duration: 13s; animation-delay: 2s; }
+
+        @keyframes rise {
+            0% { transform: translateY(0) scale(1); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 0.5; }
+            100% { transform: translateY(-100vh) scale(0.5); opacity: 0; }
+        }
+
+        /* Grid overlay */
+        .grid-overlay {
+            position: absolute;
+            inset: 0;
+            background-image: 
+                linear-gradient(rgba(0, 212, 170, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 212, 170, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
         }
 
         /* ===========================================
            SLIDE CONTAINER
            =========================================== */
         .slide {
+            min-height: 100dvh;
             min-height: 100vh;
             padding: var(--slide-padding);
             scroll-snap-align: start;
@@ -63,6 +135,7 @@
             justify-content: center;
             position: relative;
             overflow: hidden;
+            z-index: 1;
         }
 
         .slide-inner {
@@ -78,30 +151,41 @@
            =========================================== */
         h1, h2, h3 {
             font-family: var(--font-display);
-            font-weight: 500;
-            line-height: 1.15;
-            color: var(--text-primary);
+            font-weight: 600;
+            line-height: 1.1;
+            color: var(--foam);
         }
 
         h1 {
-            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-size: clamp(2rem, 6vw, 4.5rem);
         }
 
         h2 {
-            font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+            font-size: clamp(1.5rem, 4vw, 2.75rem);
             margin-bottom: 1.5rem;
         }
 
         h3 {
-            font-size: clamp(1.25rem, 2vw, 1.5rem);
+            font-size: clamp(1.1rem, 2.5vw, 1.5rem);
             margin-bottom: 0.75rem;
         }
 
         p {
-            font-size: clamp(1rem, 1.2vw, 1.125rem);
-            color: var(--text-secondary);
+            font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+            color: var(--foam-dim);
             line-height: 1.7;
             max-width: 65ch;
+        }
+
+        .lobster-text {
+            background: linear-gradient(135deg, var(--lobster-red), var(--coral));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .teal-text {
+            color: var(--teal);
         }
 
         /* ===========================================
@@ -109,14 +193,22 @@
            =========================================== */
         .reveal {
             opacity: 0;
-            transform: translateY(30px);
+            transform: translateY(40px);
             transition: opacity var(--duration-normal) var(--ease-out-expo),
                         transform var(--duration-normal) var(--ease-out-expo);
         }
 
-        .slide.visible .reveal {
+        .reveal-scale {
+            opacity: 0;
+            transform: scale(0.9);
+            transition: opacity var(--duration-normal) var(--ease-out-expo),
+                        transform var(--duration-normal) var(--ease-spring);
+        }
+
+        .slide.visible .reveal,
+        .slide.visible .reveal-scale {
             opacity: 1;
-            transform: translateY(0);
+            transform: translateY(0) scale(1);
         }
 
         .reveal:nth-child(1) { transition-delay: 0.1s; }
@@ -134,9 +226,10 @@
             top: 0;
             left: 0;
             height: 3px;
-            background: var(--accent);
+            background: linear-gradient(90deg, var(--lobster-red), var(--teal));
             z-index: 1000;
             transition: width 0.3s ease;
+            box-shadow: 0 0 10px var(--lobster-red);
         }
 
         /* ===========================================
@@ -144,31 +237,87 @@
            =========================================== */
         .nav-dots {
             position: fixed;
-            right: 2rem;
+            right: 1.5rem;
             top: 50%;
             transform: translateY(-50%);
             display: flex;
             flex-direction: column;
-            gap: 0.75rem;
+            gap: 0.6rem;
             z-index: 100;
         }
 
         .nav-dot {
-            width: 8px;
-            height: 8px;
+            width: 10px;
+            height: 10px;
             border-radius: 50%;
-            background: var(--text-light);
+            background: rgba(184, 197, 208, 0.2);
+            border: 2px solid transparent;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.3s var(--ease-spring);
         }
 
         .nav-dot.active {
-            background: var(--accent);
+            background: var(--lobster-red);
+            border-color: var(--lobster-red);
             transform: scale(1.3);
+            box-shadow: 0 0 10px var(--lobster-red);
         }
 
         .nav-dot:hover {
-            background: var(--text-muted);
+            background: var(--teal);
+            transform: scale(1.2);
+        }
+
+        /* Mobile nav dots */
+        @media (max-width: 768px) {
+            .nav-dots {
+                right: 0.8rem;
+                gap: 0.4rem;
+            }
+            .nav-dot {
+                width: 8px;
+                height: 8px;
+            }
+        }
+
+        /* ===========================================
+           MOBILE NAVIGATION ARROWS
+           =========================================== */
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            bottom: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+            gap: 1rem;
+        }
+
+        .mobile-nav-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(13, 31, 53, 0.9);
+            border: 1px solid var(--ocean-light);
+            color: var(--foam);
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .mobile-nav-btn:active {
+            transform: scale(0.95);
+            background: var(--lobster-red);
+        }
+
+        @media (max-width: 768px) {
+            .mobile-nav {
+                display: flex;
+            }
         }
 
         /* ===========================================
@@ -178,37 +327,39 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 3rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid var(--text-light);
+            margin-bottom: 2rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid rgba(0, 212, 170, 0.2);
         }
 
         .slide-tag {
             font-size: 0.75rem;
             text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: var(--text-muted);
+            letter-spacing: 0.2em;
+            color: var(--teal);
             font-weight: 500;
         }
 
         .slide-number {
             font-size: 0.75rem;
-            color: var(--text-muted);
+            color: var(--foam-muted);
             font-family: var(--font-display);
         }
 
         .accent-line {
-            width: 40px;
+            width: 50px;
             height: 3px;
-            background: var(--accent);
-            margin: 1.5rem 0;
+            background: linear-gradient(90deg, var(--lobster-red), var(--coral));
+            margin: 1rem 0;
+            border-radius: 2px;
         }
 
         .accent-line-large {
-            width: 60px;
+            width: 80px;
             height: 4px;
-            background: var(--accent);
-            margin: 2rem 0;
+            background: linear-gradient(90deg, var(--lobster-red), var(--coral));
+            margin: 1.5rem 0;
+            border-radius: 2px;
         }
 
         /* ===========================================
@@ -218,31 +369,58 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            min-height: 70vh;
+            align-items: center;
+            text-align: center;
+            min-height: 80dvh;
         }
 
         .title-meta {
             display: flex;
             justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 4rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid var(--text-light);
+            align-items: center;
+            width: 100%;
+            max-width: 800px;
+            margin-bottom: 2rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid rgba(0, 212, 170, 0.2);
+        }
+
+        .moltbot-logo {
+            max-width: min(600px, 90%);
+            width: 100%;
+            height: auto;
+            margin-bottom: 2rem;
+            filter: drop-shadow(0 0 30px rgba(0, 212, 170, 0.3));
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .lobster-emoji {
+            font-size: clamp(3rem, 8vw, 5rem);
+            margin-bottom: 1rem;
+            display: inline-block;
+            animation: wave 2s ease-in-out infinite;
+        }
+
+        @keyframes wave {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-10deg); }
+            75% { transform: rotate(10deg); }
         }
 
         .title-slide h1 {
-            font-size: clamp(3rem, 6vw, 5rem);
-            margin-bottom: 1.5rem;
-        }
-
-        .title-slide h1 em {
-            font-style: italic;
-            color: var(--accent);
+            font-size: clamp(1.8rem, 5vw, 3.5rem);
+            margin-bottom: 1rem;
+            line-height: 1.2;
         }
 
         .title-subtitle {
-            font-size: 1.25rem;
-            color: var(--text-secondary);
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            color: var(--foam-dim);
             max-width: 600px;
             line-height: 1.7;
             font-weight: 300;
@@ -250,27 +428,41 @@
 
         .title-footer {
             display: flex;
-            gap: 4rem;
-            margin-top: 4rem;
+            gap: 3rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
         .title-footer-item {
             display: flex;
             flex-direction: column;
             gap: 0.25rem;
+            text-align: center;
         }
 
         .title-footer-label {
             font-size: 0.625rem;
             text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--text-muted);
+            letter-spacing: 0.15em;
+            color: var(--foam-muted);
         }
 
         .title-footer-value {
-            font-size: 0.875rem;
-            color: var(--text-primary);
+            font-size: 0.9rem;
+            color: var(--foam);
             font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            .title-footer {
+                gap: 1.5rem;
+            }
+            .title-meta {
+                flex-direction: column;
+                gap: 0.5rem;
+                text-align: center;
+            }
         }
 
         /* ===========================================
@@ -279,45 +471,65 @@
         .two-column {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 4rem;
+            gap: 3rem;
             align-items: start;
         }
 
         .three-column {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
+            gap: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .two-column,
+            .three-column {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
         }
 
         .feature-card {
             padding: 1.5rem;
-            background: var(--bg-secondary);
-            border-left: 3px solid var(--accent);
+            background: rgba(13, 31, 53, 0.6);
+            border: 1px solid rgba(0, 212, 170, 0.15);
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            border-color: var(--teal);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 212, 170, 0.1);
         }
 
         .feature-card h4 {
             font-family: var(--font-display);
-            font-size: 1.125rem;
+            font-size: 1.1rem;
             margin-bottom: 0.5rem;
-            color: var(--text-primary);
+            color: var(--foam);
         }
 
         .feature-card p {
             font-size: 0.9rem;
-            color: var(--text-secondary);
+            color: var(--foam-dim);
         }
 
         .stat-number {
             font-family: var(--font-display);
-            font-size: clamp(2.5rem, 4vw, 3.5rem);
-            color: var(--accent);
-            font-weight: 600;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            background: linear-gradient(135deg, var(--lobster-red), var(--coral));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
             line-height: 1;
         }
 
         .stat-label {
-            font-size: 0.875rem;
-            color: var(--text-muted);
+            font-size: 0.8rem;
+            color: var(--foam-muted);
             text-transform: uppercase;
             letter-spacing: 0.1em;
             margin-top: 0.5rem;
@@ -333,86 +545,92 @@
 
         .styled-list li {
             position: relative;
-            padding-left: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--text-secondary);
+            padding-left: 1.75rem;
+            margin-bottom: 0.875rem;
+            color: var(--foam-dim);
+            font-size: clamp(0.9rem, 1.5vw, 1rem);
         }
 
         .styled-list li::before {
-            content: '';
+            content: '🦞';
             position: absolute;
             left: 0;
-            top: 0.6em;
-            width: 8px;
-            height: 8px;
-            background: var(--accent);
-            border-radius: 50%;
+            top: 0;
+            font-size: 0.9rem;
         }
 
         /* ===========================================
            CODE BLOCK
            =========================================== */
         .code-block {
-            background: var(--bg-tertiary);
-            padding: 1.5rem;
-            border-radius: 4px;
-            font-family: 'SF Mono', Monaco, monospace;
-            font-size: 0.85rem;
-            color: var(--text-primary);
+            background: rgba(10, 22, 40, 0.8);
+            border: 1px solid rgba(0, 212, 170, 0.2);
+            padding: 1.25rem;
+            border-radius: 8px;
+            font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+            font-size: 0.8rem;
+            color: var(--foam);
             overflow-x: auto;
             margin: 1rem 0;
         }
 
-        .code-block .comment {
-            color: var(--text-muted);
-        }
-
-        .code-block .keyword {
-            color: var(--accent);
-        }
+        .code-block .comment { color: var(--foam-muted); }
+        .code-block .keyword { color: var(--lobster-red); }
+        .code-block .string { color: var(--teal); }
 
         /* ===========================================
            ARCHITECTURE DIAGRAM
            =========================================== */
         .diagram-container {
-            background: var(--bg-secondary);
-            padding: 2rem;
-            border-radius: 8px;
-            margin: 2rem 0;
+            background: rgba(13, 31, 53, 0.6);
+            border: 1px solid rgba(0, 212, 170, 0.15);
+            padding: 1.5rem;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            margin: 1.5rem 0;
+            overflow-x: auto;
         }
 
         .arch-diagram {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 1rem;
+            gap: 0.75rem;
+            min-width: 300px;
         }
 
         .arch-layer {
             display: flex;
-            gap: 1rem;
+            gap: 0.75rem;
             flex-wrap: wrap;
             justify-content: center;
         }
 
         .arch-box {
-            padding: 0.75rem 1.25rem;
-            background: white;
-            border: 1px solid var(--text-light);
-            border-radius: 4px;
-            font-size: 0.875rem;
+            padding: 0.6rem 1rem;
+            background: rgba(20, 41, 69, 0.8);
+            border: 1px solid rgba(0, 212, 170, 0.2);
+            border-radius: 8px;
+            font-size: 0.8rem;
             text-align: center;
-            min-width: 120px;
+            color: var(--foam-dim);
+            transition: all 0.3s ease;
+        }
+
+        .arch-box:hover {
+            border-color: var(--teal);
+            color: var(--foam);
         }
 
         .arch-box.highlight {
-            border-color: var(--accent);
-            background: rgba(220, 38, 38, 0.05);
+            border-color: var(--lobster-red);
+            background: rgba(231, 76, 60, 0.1);
+            color: var(--foam);
         }
 
         .arch-arrow {
-            font-size: 1.5rem;
-            color: var(--text-muted);
+            font-size: 1.25rem;
+            color: var(--teal);
         }
 
         /* ===========================================
@@ -423,50 +641,65 @@
             border-collapse: collapse;
             margin: 1.5rem 0;
             font-size: 0.9rem;
+            overflow-x: auto;
+            display: block;
+        }
+
+        .comparison-table thead,
+        .comparison-table tbody {
+            display: table;
+            width: 100%;
+            min-width: 500px;
         }
 
         .comparison-table th,
         .comparison-table td {
-            padding: 1rem;
+            padding: 0.875rem;
             text-align: left;
-            border-bottom: 1px solid var(--text-light);
+            border-bottom: 1px solid rgba(0, 212, 170, 0.15);
         }
 
         .comparison-table th {
             font-weight: 600;
-            color: var(--text-primary);
+            color: var(--teal);
             font-family: var(--font-display);
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
         }
 
         .comparison-table td {
-            color: var(--text-secondary);
+            color: var(--foam-dim);
         }
 
         .comparison-table tr:hover td {
-            background: var(--bg-secondary);
+            background: rgba(0, 212, 170, 0.05);
         }
 
         /* ===========================================
            QUOTE
            =========================================== */
         .quote-block {
-            border-left: 4px solid var(--accent);
-            padding-left: 1.5rem;
-            margin: 2rem 0;
+            border-left: 4px solid var(--lobster-red);
+            padding-left: 1.25rem;
+            margin: 1.5rem 0;
+            background: rgba(231, 76, 60, 0.05);
+            padding: 1.25rem 1.25rem 1.25rem 1.5rem;
+            border-radius: 0 8px 8px 0;
         }
 
         .quote-block p {
             font-family: var(--font-display);
-            font-size: 1.25rem;
+            font-size: 1.15rem;
             font-style: italic;
-            color: var(--text-primary);
+            color: var(--foam);
         }
 
         .quote-block cite {
             display: block;
             margin-top: 0.75rem;
-            font-size: 0.875rem;
-            color: var(--text-muted);
+            font-size: 0.8rem;
+            color: var(--foam-muted);
             font-style: normal;
         }
 
@@ -475,41 +708,86 @@
            =========================================== */
         .keyboard-hint {
             position: fixed;
-            bottom: 1.5rem;
+            bottom: 1rem;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
             gap: 1rem;
-            font-size: 0.75rem;
-            color: var(--text-muted);
+            font-size: 0.7rem;
+            color: var(--foam-muted);
             z-index: 100;
+            background: rgba(10, 22, 40, 0.8);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
         }
 
         .keyboard-hint kbd {
-            background: var(--bg-secondary);
-            padding: 0.25rem 0.5rem;
+            background: var(--ocean-light);
+            padding: 0.2rem 0.5rem;
             border-radius: 4px;
-            border: 1px solid var(--text-light);
+            border: 1px solid rgba(0, 212, 170, 0.2);
+            font-family: monospace;
+        }
+
+        @media (max-width: 768px) {
+            .keyboard-hint {
+                display: none;
+            }
         }
 
         /* ===========================================
            RESPONSIVE
            =========================================== */
         @media (max-width: 768px) {
-            .nav-dots,
-            .keyboard-hint {
-                display: none;
+            :root {
+                --slide-padding: 1.25rem;
             }
 
-            .two-column,
-            .three-column {
-                grid-template-columns: 1fr;
-                gap: 2rem;
+            html {
+                scroll-snap-type: y proximity;
             }
 
-            .title-footer {
-                flex-direction: column;
-                gap: 1.5rem;
+            .slide {
+                min-height: 100dvh;
+                padding-top: 1.5rem;
+                padding-bottom: 5rem;
+            }
+
+            h1 {
+                font-size: 1.75rem;
+            }
+
+            h2 {
+                font-size: 1.4rem;
+            }
+
+            .moltbot-logo {
+                max-width: 95%;
+            }
+
+            .slide-header {
+                margin-bottom: 1.5rem;
+            }
+
+            .feature-card {
+                padding: 1.25rem;
+            }
+
+            .diagram-container {
+                padding: 1rem;
+            }
+
+            .code-block {
+                font-size: 0.75rem;
+                padding: 1rem;
+            }
+        }
+
+        /* Touch device optimizations */
+        @media (hover: none) {
+            .feature-card:hover {
+                transform: none;
             }
         }
 
@@ -517,9 +795,13 @@
            REDUCED MOTION
            =========================================== */
         @media (prefers-reduced-motion: reduce) {
-            .reveal {
+            .reveal, .reveal-scale {
                 transition: opacity 0.3s ease;
                 transform: none;
+            }
+
+            .bubble, .moltbot-logo, .lobster-emoji {
+                animation: none;
             }
 
             html {
@@ -529,11 +811,32 @@
     </style>
 </head>
 <body>
+    <!-- Ocean Background -->
+    <div class="ocean-bg">
+        <div class="ocean-gradient"></div>
+        <div class="grid-overlay"></div>
+        <div class="bubbles">
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+        </div>
+    </div>
+
     <!-- Progress Bar -->
     <div class="progress-bar" id="progressBar"></div>
 
     <!-- Navigation Dots -->
     <nav class="nav-dots" id="navDots"></nav>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav" id="mobileNav">
+        <button class="mobile-nav-btn" id="prevBtn">←</button>
+        <button class="mobile-nav-btn" id="nextBtn">→</button>
+    </div>
 
     <!-- Keyboard Hint -->
     <div class="keyboard-hint">
@@ -545,11 +848,11 @@
     <section class="slide title-slide" data-slide="1">
         <div class="slide-inner">
             <div class="title-meta reveal">
-                <span class="slide-tag">Internal Presentation</span>
+                <span class="slide-tag">🦞 Internal Presentation</span>
                 <span>January 2026</span>
             </div>
             
-            <h1 class="reveal">Moltbot:<br>The Rise of <em>Local-First</em><br>AI Assistants</h1>
+            <img src="https://raw.githubusercontent.com/moltbot/moltbot/main/README-header.png" alt="Moltbot" class="moltbot-logo reveal-scale">
             
             <p class="title-subtitle reveal">An architectural and strategic analysis of the open-source personal AI assistant that's redefining human-machine interaction through multi-channel messaging integration.</p>
             
@@ -576,7 +879,7 @@
     <section class="slide" data-slide="2">
         <div class="slide-inner">
             <div class="slide-header reveal">
-                <span class="slide-tag">Overview</span>
+                <span class="slide-tag">📋 Overview</span>
                 <span class="slide-number">02 / 24</span>
             </div>
             
@@ -586,19 +889,19 @@
                 <div class="reveal">
                     <div class="accent-line"></div>
                     <ul class="styled-list">
-                        <li><strong>Understanding Moltbot</strong> — What it is and why it matters</li>
-                        <li><strong>The Problem Space</strong> — Current gaps in AI assistants</li>
-                        <li><strong>Architecture Deep Dive</strong> — Gateway, channels, and runtime</li>
-                        <li><strong>Feature Analysis</strong> — Voice, Canvas, and automation tools</li>
+                        <li><strong class="teal-text">Understanding Moltbot</strong> — What it is and why it matters</li>
+                        <li><strong class="teal-text">The Problem Space</strong> — Current gaps in AI assistants</li>
+                        <li><strong class="teal-text">Architecture Deep Dive</strong> — Gateway, channels, and runtime</li>
+                        <li><strong class="teal-text">Feature Analysis</strong> — Voice, Canvas, and automation tools</li>
                     </ul>
                 </div>
                 <div class="reveal">
                     <div class="accent-line"></div>
                     <ul class="styled-list">
-                        <li><strong>Security Model</strong> — DM pairing and trust boundaries</li>
-                        <li><strong>Getting Started</strong> — Installation and setup</li>
-                        <li><strong>Use Cases</strong> — Where Moltbot excels</li>
-                        <li><strong>Strategic Implications</strong> — Opportunities and risks</li>
+                        <li><strong class="teal-text">Security Model</strong> — DM pairing and trust boundaries</li>
+                        <li><strong class="teal-text">Getting Started</strong> — Installation and setup</li>
+                        <li><strong class="teal-text">Use Cases</strong> — Where Moltbot excels</li>
+                        <li><strong class="teal-text">Strategic Implications</strong> — Opportunities and risks</li>
                     </ul>
                 </div>
             </div>
@@ -609,11 +912,11 @@
     <section class="slide" data-slide="3">
         <div class="slide-inner">
             <div class="slide-header reveal">
-                <span class="slide-tag">Introduction</span>
+                <span class="slide-tag">🎯 Introduction</span>
                 <span class="slide-number">03 / 24</span>
             </div>
             
-            <h2 class="reveal">What is Moltbot?</h2>
+            <h2 class="reveal">What is <span class="lobster-text">Moltbot</span>?</h2>
             
             <div class="quote-block reveal">
                 <p>"A personal AI assistant you run on your own devices. It answers you on the channels you already use."</p>
@@ -644,20 +947,20 @@
     <section class="slide" data-slide="4">
         <div class="slide-inner">
             <div class="slide-header reveal">
-                <span class="slide-tag">Background</span>
+                <span class="slide-tag">📖 Background</span>
                 <span class="slide-number">04 / 24</span>
             </div>
             
-            <h2 class="reveal">From Clawdbot to Moltbot</h2>
+            <h2 class="reveal">From <span class="lobster-text">Clawdbot</span> to <span class="lobster-text">Moltbot</span> 🦞</h2>
             
             <div class="two-column">
                 <div class="reveal">
                     <div class="accent-line"></div>
                     <h3>The Rebrand</h3>
-                    <p>Originally launched as <strong>Clawdbot</strong>, the project gained viral attention in early 2026. The name change to <strong>Moltbot</strong> reflects growth and transformation — like a crustacean shedding its shell.</p>
+                    <p>Originally launched as <strong class="teal-text">Clawdbot</strong>, the project gained viral attention in early 2026. The name change to <strong class="teal-text">Moltbot</strong> reflects growth and transformation — like a lobster shedding its shell.</p>
                     
                     <div style="margin-top: 2rem;">
-                        <h4 style="font-family: var(--font-display); margin-bottom: 0.5rem;">Why It Went Viral</h4>
+                        <h4 style="font-family: var(--font-display); margin-bottom: 0.5rem;" class="teal-text">Why It Went Viral</h4>
                         <ul class="styled-list">
                             <li>Solves real "AI that actually does things" use case</li>
                             <li>Privacy-first, local execution</li>
@@ -669,15 +972,15 @@
                 
                 <div class="reveal">
                     <div class="feature-card">
-                        <h4>Media Coverage</h4>
+                        <h4>📰 Media Coverage</h4>
                         <p>Featured in TechCrunch, Ars Technica, and developer communities as a new paradigm for personal AI.</p>
                     </div>
                     <div class="feature-card" style="margin-top: 1rem;">
-                        <h4>Community Growth</h4>
+                        <h4>👥 Community Growth</h4>
                         <p>Rapid GitHub star growth and active Discord community with contributors worldwide.</p>
                     </div>
                     <div class="feature-card" style="margin-top: 1rem;">
-                        <h4>Enterprise Interest</h4>
+                        <h4>🏢 Enterprise Interest</h4>
                         <p>Being evaluated by teams looking for self-hosted AI solutions with data sovereignty.</p>
                     </div>
                 </div>
@@ -689,7 +992,7 @@
     <section class="slide" data-slide="5">
         <div class="slide-inner">
             <div class="slide-header reveal">
-                <span class="slide-tag">Problem Analysis</span>
+                <span class="slide-tag">⚠️ Problem Analysis</span>
                 <span class="slide-number">05 / 24</span>
             </div>
             
@@ -697,28 +1000,28 @@
             
             <div class="three-column">
                 <div class="feature-card reveal">
-                    <h4>Cloud Dependency</h4>
+                    <h4>☁️ Cloud Dependency</h4>
                     <p>Most assistants require constant internet and send your data to external servers. Privacy concerns and latency issues.</p>
                 </div>
                 <div class="feature-card reveal">
-                    <h4>App Silos</h4>
+                    <h4>📱 App Silos</h4>
                     <p>You need to open a specific app to interact with AI. No integration with where you already communicate.</p>
                 </div>
                 <div class="feature-card reveal">
-                    <h4>Generic Experience</h4>
+                    <h4>🤖 Generic Experience</h4>
                     <p>One-size-fits-all models without personal context. No access to your files, calendar, or workflows.</p>
                 </div>
             </div>
             
-            <div class="accent-line reveal" style="margin: 3rem 0;"></div>
+            <div class="accent-line reveal" style="margin: 2rem 0;"></div>
             
             <div class="two-column reveal">
                 <div>
-                    <h3 style="font-family: var(--font-display);">The Lock-in Effect</h3>
+                    <h3 style="font-family: var(--font-display);" class="lobster-text">The Lock-in Effect</h3>
                     <p>Major platforms (ChatGPT, Claude, Gemini) trap you in their ecosystems. Switching costs are high, customization is limited.</p>
                 </div>
                 <div>
-                    <h3 style="font-family: var(--font-display);">The Trust Gap</h3>
+                    <h3 style="font-family: var(--font-display);" class="lobster-text">The Trust Gap</h3>
                     <p>Enterprise and privacy-conscious users need on-premise solutions. Current options are either too complex or too limited.</p>
                 </div>
             </div>
@@ -729,11 +1032,11 @@
     <section class="slide" data-slide="6">
         <div class="slide-inner">
             <div class="slide-header reveal">
-                <span class="slide-tag">Solution</span>
+                <span class="slide-tag">💡 Solution</span>
                 <span class="slide-number">06 / 24</span>
             </div>
             
-            <h2 class="reveal">How Moltbot Solves These Problems</h2>
+            <h2 class="reveal">How <span class="lobster-text">Moltbot</span> Solves These Problems</h2>
             
             <div class="diagram-container reveal">
                 <div class="arch-diagram">
@@ -747,9 +1050,9 @@
                     </div>
                     <div class="arch-arrow">↓</div>
                     <div class="arch-layer">
-                        <div class="arch-box highlight" style="min-width: 300px;">
-                            <strong>Moltbot Gateway</strong><br>
-                            <span style="font-size: 0.8rem; color: var(--text-muted);">Local Control Plane</span>
+                        <div class="arch-box highlight" style="min-width: 280px;">
+                            <strong>🦞 Moltbot Gateway</strong><br>
+                            <span style="font-size: 0.75rem; color: var(--foam-muted);">Local Control Plane</span>
                         </div>
                     </div>
                     <div class="arch-arrow">↓</div>
@@ -761,13 +1064,13 @@
                 </div>
             </div>
             
-            <div class="two-column" style="margin-top: 2rem;">
+            <div class="two-column" style="margin-top: 1.5rem;">
                 <div class="reveal">
-                    <h4 style="font-family: var(--font-display); margin-bottom: 0.5rem;">Meet Users Where They Are</h4>
+                    <h4 style="font-family: var(--font-display); margin-bottom: 0.5rem;" class="teal-text">Meet Users Where They Are</h4>
                     <p>No new apps to install. Interact through the messaging platforms you already use daily.</p>
                 </div>
                 <div class="reveal">
-                    <h4 style="font-family: var(--font-display); margin-bottom: 0.5rem;">Own Your Infrastructure</h4>
+                    <h4 style="font-family: var(--font-display); margin-bottom: 0.5rem;" class="teal-text">Own Your Infrastructure</h4>
                     <p>Gateway runs locally. Your messages don't leave your machine unless you want them to.</p>
                 </div>
             </div>
@@ -778,7 +1081,7 @@
     <section class="slide" data-slide="7">
         <div class="slide-inner">
             <div class="slide-header reveal">
-                <span class="slide-tag">Philosophy</span>
+                <span class="slide-tag">🎯 Philosophy</span>
                 <span class="slide-number">07 / 24</span>
             </div>
             
@@ -788,18 +1091,18 @@
                 <div class="reveal">
                     <div class="accent-line"></div>
                     
-                    <div style="margin-bottom: 2rem;">
-                        <h3 style="font-family: var(--font-display);">1. Local-First</h3>
+                    <div style="margin-bottom: 1.5rem;">
+                        <h3 style="font-family: var(--font-display);" class="lobster-text">1. Local-First</h3>
                         <p>The Gateway is a single control plane running on your device. Sessions, channels, tools, and events all managed locally.</p>
                     </div>
                     
-                    <div style="margin-bottom: 2rem;">
-                        <h3 style="font-family: var(--font-display);">2. Multi-Agent Routing</h3>
+                    <div style="margin-bottom: 1.5rem;">
+                        <h3 style="font-family: var(--font-display);" class="lobster-text">2. Multi-Agent Routing</h3>
                         <p>Route inbound channels to isolated agents with per-agent sessions and workspaces for different contexts.</p>
                     </div>
                     
                     <div>
-                        <h3 style="font-family: var(--font-display);">3. Always-On Voice</h3>
+                        <h3 style="font-family: var(--font-display);" class="lobster-text">3. Always-On Voice</h3>
                         <p>Voice Wake + Talk Mode for macOS/iOS/Android with ElevenLabs integration. Speak naturally to your assistant.</p>
                     </div>
                 </div>
@@ -807,18 +1110,18 @@
                 <div class="reveal">
                     <div class="accent-line"></div>
                     
-                    <div style="margin-bottom: 2rem;">
-                        <h3 style="font-family: var(--font-display);">4. Live Canvas</h3>
+                    <div style="margin-bottom: 1.5rem;">
+                        <h3 style="font-family: var(--font-display);" class="lobster-text">4. Live Canvas</h3>
                         <p>Agent-driven visual workspace with A2UI. See what the AI is thinking, browsing, or creating in real-time.</p>
                     </div>
                     
-                    <div style="margin-bottom: 2rem;">
-                        <h3 style="font-family: var(--font-display);">5. Skills Platform</h3>
+                    <div style="margin-bottom: 1.5rem;">
+                        <h3 style="font-family: var(--font-display);" class="lobster-text">5. Skills Platform</h3>
                         <p>Extensible through bundled, managed, and workspace skills. Install capabilities like packages.</p>
                     </div>
                     
                     <div>
-                        <h3 style="font-family: var(--font-display);">6. Security by Default</h3>
+                        <h3 style="font-family: var(--font-display);" class="lobster-text">6. Security by Default</h3>
                         <p>DM pairing required for unknown senders. Explicit opt-in for public inbound messages.</p>
                     </div>
                 </div>
@@ -830,7 +1133,7 @@
     <section class="slide" data-slide="8">
         <div class="slide-inner">
             <div class="slide-header reveal">
-                <span class="slide-tag">Architecture</span>
+                <span class="slide-tag">🏗️ Architecture</span>
                 <span class="slide-number">08 / 24</span>
             </div>
             
@@ -850,9 +1153,9 @@
                     </div>
                     <div class="arch-arrow">↓</div>
                     <div class="arch-layer">
-                        <div class="arch-box highlight" style="min-width: 400px;">
-                            <strong>Gateway (Node.js)</strong><br>
-                            <span style="font-size: 0.8rem;">WS Control Plane • Sessions • Cron • Webhooks • Control UI</span>
+                        <div class="arch-box highlight" style="min-width: 320px;">
+                            <strong>🦞 Gateway (Node.js)</strong><br>
+                            <span style="font-size: 0.75rem;">WS Control Plane • Sessions • Cron • Webhooks • Control UI</span>
                         </div>
                     </div>
                     <div class="arch-arrow">↓</div>
@@ -870,7 +1173,7 @@
                 </div>
             </div>
             
-            <p class="reveal" style="text-align: center; margin-top: 1.5rem;">
+            <p class="reveal" style="text-align: center; margin-top: 1rem; font-size: 0.9rem;">
                 The Gateway acts as a control plane, routing messages from any channel to AI models while maintaining session state and tool access.
             </p>
         </div>
@@ -880,7 +1183,7 @@
     <section class="slide" data-slide="9">
         <div class="slide-inner">
             <div class="slide-header reveal">
-                <span class="slide-tag">Channels</span>
+                <span class="slide-tag">📱 Channels</span>
                 <span class="slide-number">09 / 24</span>
             </div>
             
@@ -888,7 +1191,7 @@
             
             <div class="two-column">
                 <div class="reveal">
-                    <h3 style="font-family: var(--font-display); margin-bottom: 1rem;">Native Channels</h3>
+                    <h3 style="font-family: var(--font-display); margin-bottom: 1rem;" class="teal-text">Native Channels</h3>
                     <ul class="styled-list">
                         <li><strong>WhatsApp</strong> — Baileys library</li>
                         <li><strong>Telegram</strong> — grammY framework</li>
@@ -901,7 +1204,7 @@
                 </div>
                 
                 <div class="reveal">
-                    <h3 style="font-family: var(--font-display); margin-bottom: 1rem;">Extension Channels</h3>
+                    <h3 style="font-family: var(--font-display); margin-bottom: 1rem;" class="teal-text">Extension Channels</h3>
                     <ul class="styled-list">
                         <li><strong>BlueBubbles</strong> — iMessage extension</li>
                         <li><strong>Microsoft Teams</strong> — Extension support</li>
@@ -913,8 +1216,8 @@
                 </div>
             </div>
             
-            <div class="feature-card reveal" style="margin-top: 2rem;">
-                <h4>Channel Routing Features</h4>
+            <div class="feature-card reveal" style="margin-top: 1.5rem;">
+                <h4>🔄 Channel Routing Features</h4>
                 <p>Mention gating, reply tags, per-channel chunking, and group isolation. Route different channels to different agents based on context.</p>
             </div>
         </div>
@@ -924,19 +1227,19 @@
     <section class="slide" data-slide="10">
         <div class="slide-inner">
             <div class="slide-header reveal">
-                <span class="slide-tag">Features</span>
+                <span class="slide-tag">✨ Features</span>
                 <span class="slide-number">10 / 24</span>
             </div>
             
-            <h2 class="reveal">Voice Wake & Live Canvas</h2>
+            <h2 class="reveal">Voice Wake & <span class="lobster-text">Live Canvas</span></h2>
             
             <div class="two-column">
                 <div class="reveal">
                     <div class="accent-line"></div>
-                    <h3 style="font-family: var(--font-display);">Voice Wake + Talk Mode</h3>
+                    <h3 style="font-family: var(--font-display);">🎙️ Voice Wake + Talk Mode</h3>
                     <p>Always-on speech recognition for macOS, iOS, and Android. Integrated with ElevenLabs for natural voice synthesis.</p>
                     
-                    <div style="margin-top: 1.5rem;">
+                    <div style="margin-top: 1rem;">
                         <ul class="styled-list">
                             <li>Push-to-talk or wake word activation</li>
                             <li>Overlay UI on macOS</li>
@@ -948,10 +1251,10 @@
                 
                 <div class="reveal">
                     <div class="accent-line"></div>
-                    <h3 style="font-family: var(--font-display);">Live Canvas (A2UI)</h3>
+                    <h3 style="font-family: var(--font-display);">🎨 Live Canvas (A2UI)</h3>
                     <p>Agent-driven visual workspace that renders what the AI is doing. See browsing, coding, and creating in real-time.</p>
                     
-                    <div style="margin-top: 1.5rem;">
+                    <div style="margin-top: 1rem;">
                         <ul class="styled-list">
                             <li>Real-time visual feedback</li>
                             <li>Interactive elements</li>
@@ -962,17 +1265,17 @@
                 </div>
             </div>
             
-            <div class="three-column" style="margin-top: 3rem;">
+            <div class="three-column" style="margin-top: 2rem;">
                 <div class="feature-card reveal">
-                    <h4>macOS App</h4>
+                    <h4>🖥️ macOS App</h4>
                     <p>Menu bar control plane with Voice Wake, Talk Mode overlay, and WebChat interface.</p>
                 </div>
                 <div class="feature-card reveal">
-                    <h4>iOS Node</h4>
+                    <h4>📱 iOS Node</h4>
                     <p>Canvas, Voice Wake, camera access, screen recording, and Bonjour pairing.</p>
                 </div>
                 <div class="feature-card reveal">
-                    <h4>Android Node</h4>
+                    <h4>🤖 Android Node</h4>
                     <p>Canvas, Talk Mode, camera, screen recording, and optional SMS integration.</p>
                 </div>
             </div>
@@ -983,7 +1286,7 @@
     <section class="slide" data-slide="11">
         <div class="slide-inner">
             <div class="slide-header reveal">
-                <span class="slide-tag">Automation</span>
+                <span class="slide-tag">🛠️ Automation</span>
                 <span class="slide-number">11 / 24</span>
             </div>
             
@@ -1004,7 +1307,7 @@
                 </div>
             </div>
             
-            <div class="three-column" style="margin-top: 1.5rem;">
+            <div class="three-column" style="margin-top: 1rem;">
                 <div class="feature-card reveal">
                     <h4>⏰ Cron + Wakeups</h4>
                     <p>Scheduled tasks and event-driven wakeups for proactive automation.</p>
@@ -1018,11 +1321,6 @@
                     <p>Real-time email processing and notification handling.</p>
                 </div>
             </div>
-            
-            <div class="feature-card reveal" style="margin-top: 1.5rem;">
-                <h4>Discord & Slack Actions</h4>
-                <p>First-class support for platform-specific actions like sending messages, managing channels, and reacting to events.</p>
-            </div>
         </div>
     </section>
 
@@ -1030,7 +1328,7 @@
     <section class="slide" data-slide="12">
         <div class="slide-inner">
             <div class="slide-header reveal">
-                <span class="slide-tag">Security</span>
+                <span class="slide-tag">🔒 Security</span>
                 <span class="slide-number">12 / 24</span>
             </div>
             
@@ -1041,9 +1339,9 @@
                 <cite>— Security Documentation</cite>
             </div>
             
-            <div class="two-column" style="margin-top: 2rem;">
+            <div class="two-column" style="margin-top: 1.5rem;">
                 <div class="reveal">
-                    <h3 style="font-family: var(--font-display);">DM Pairing</h3>
+                    <h3 style="font-family: var(--font-display);" class="lobster-text">DM Pairing</h3>
                     <p>Unknown senders receive a pairing code. The bot does not process their message until explicitly approved.</p>
                     
                     <div class="code-block" style="margin-top: 1rem;">
@@ -1053,19 +1351,19 @@ moltbot pairing approve &lt;channel&gt; &lt;code&gt;
                 </div>
                 
                 <div class="reveal">
-                    <h3 style="font-family: var(--font-display);">Security Policies</h3>
+                    <h3 style="font-family: var(--font-display);" class="lobster-text">Security Policies</h3>
                     <ul class="styled-list">
-                        <li><strong>dmPolicy="pairing"</strong> — Require approval (default)</li>
-                        <li><strong>dmPolicy="open"</strong> — Accept all (opt-in)</li>
-                        <li><strong>allowFrom</strong> — Whitelist specific users</li>
-                        <li><strong>Block list</strong> — Deny specific senders</li>
+                        <li><strong class="teal-text">dmPolicy="pairing"</strong> — Require approval (default)</li>
+                        <li><strong class="teal-text">dmPolicy="open"</strong> — Accept all (opt-in)</li>
+                        <li><strong class="teal-text">allowFrom</strong> — Whitelist specific users</li>
+                        <li><strong class="teal-text">Block list</strong> — Deny specific senders</li>
                     </ul>
                 </div>
             </div>
             
-            <div class="feature-card reveal" style="margin-top: 2rem;">
-                <h4>Doctor Command</h4>
-                <p>Run <code>moltbot doctor</code> to surface risky or misconfigured DM policies. Recommended for periodic security audits.</p>
+            <div class="feature-card reveal" style="margin-top: 1.5rem;">
+                <h4>🩺 Doctor Command</h4>
+                <p>Run <code style="background: rgba(0,212,170,0.2); padding: 0.2rem 0.4rem; border-radius: 4px;">moltbot doctor</code> to surface risky or misconfigured DM policies. Recommended for periodic security audits.</p>
             </div>
         </div>
     </section>
@@ -1074,7 +1372,7 @@ moltbot pairing approve &lt;channel&gt; &lt;code&gt;
     <section class="slide" data-slide="13">
         <div class="slide-inner">
             <div class="slide-header reveal">
-                <span class="slide-tag">Models</span>
+                <span class="slide-tag">🤖 Models</span>
                 <span class="slide-number">13 / 24</span>
             </div>
             
@@ -1090,35 +1388,35 @@ moltbot pairing approve &lt;channel&gt; &lt;code&gt;
                 </thead>
                 <tbody>
                     <tr>
-                        <td><strong>Anthropic</strong></td>
+                        <td><strong class="teal-text">Anthropic</strong></td>
                         <td>Claude Pro/Max OAuth</td>
                         <td>Opus 4.5 (long context, injection-resistant)</td>
                     </tr>
                     <tr>
-                        <td><strong>OpenAI</strong></td>
+                        <td><strong class="teal-text">OpenAI</strong></td>
                         <td>ChatGPT/Codex OAuth</td>
                         <td>GPT-4o, o1 for complex reasoning</td>
                     </tr>
                     <tr>
-                        <td><strong>Local</strong></td>
+                        <td><strong class="teal-text">Local</strong></td>
                         <td>Ollama, llama.cpp</td>
                         <td>Llama 3, Mistral, custom models</td>
                     </tr>
                     <tr>
-                        <td><strong>API Keys</strong></td>
+                        <td><strong class="teal-text">API Keys</strong></td>
                         <td>Standard API authentication</td>
                         <td>Any compatible endpoint</td>
                     </tr>
                 </tbody>
             </table>
             
-            <div class="two-column" style="margin-top: 2rem;">
+            <div class="two-column" style="margin-top: 1.5rem;">
                 <div class="reveal">
-                    <h4 style="font-family: var(--font-display);">Model Failover</h4>
+                    <h4 style="font-family: var(--font-display);" class="lobster-text">Model Failover</h4>
                     <p>Configure fallback models when primary is unavailable. Automatic rotation between OAuth and API key profiles.</p>
                 </div>
                 <div class="reveal">
-                    <h4 style="font-family: var(--font-display);">Recommended Setup</h4>
+                    <h4 style="font-family: var(--font-display);" class="lobster-text">Recommended Setup</h4>
                     <p>Anthropic Pro/Max (100/200) + Opus 4.5 for long-context strength and better prompt-injection resistance.</p>
                 </div>
             </div>
@@ -1129,7 +1427,7 @@ moltbot pairing approve &lt;channel&gt; &lt;code&gt;
     <section class="slide" data-slide="14">
         <div class="slide-inner">
             <div class="slide-header reveal">
-                <span class="slide-tag">Getting Started</span>
+                <span class="slide-tag">🚀 Getting Started</span>
                 <span class="slide-number">14 / 24</span>
             </div>
             
@@ -1146,12 +1444,12 @@ moltbot onboard --install-daemon<br><br>
 moltbot gateway --port 18789 --verbose<br><br>
 
 <span class="comment"># Send a test message</span><br>
-moltbot message send --to +1234567890 --message <span class="string">"Hello from Moltbot"</span>
+moltbot message send --to +1234567890 --message <span class="string">"Hello from Moltbot 🦞"</span>
             </div>
             
-            <div class="two-column" style="margin-top: 2rem;">
+            <div class="two-column" style="margin-top: 1.5rem;">
                 <div class="reveal">
-                    <h3 style="font-family: var(--font-display);">Platform Support</h3>
+                    <h3 style="font-family: var(--font-display);" class="teal-text">Platform Support</h3>
                     <ul class="styled-list">
                         <li><strong>macOS</strong> — Native support, menu bar app</li>
                         <li><strong>Linux</strong> — Full CLI support</li>
@@ -1159,7 +1457,7 @@ moltbot message send --to +1234567890 --message <span class="string">"Hello from
                     </ul>
                 </div>
                 <div class="reveal">
-                    <h3 style="font-family: var(--font-display);">Package Managers</h3>
+                    <h3 style="font-family: var(--font-display);" class="teal-text">Package Managers</h3>
                     <ul class="styled-list">
                         <li>npm</li>
                         <li>pnpm (recommended for dev)</li>
@@ -1174,7 +1472,7 @@ moltbot message send --to +1234567890 --message <span class="string">"Hello from
     <section class="slide" data-slide="15">
         <div class="slide-inner">
             <div class="slide-header reveal">
-                <span class="slide-tag">Development</span>
+                <span class="slide-tag">💻 Development</span>
                 <span class="slide-number">15 / 24</span>
             </div>
             
@@ -1182,20 +1480,20 @@ moltbot message send --to +1234567890 --message <span class="string">"Hello from
             
             <div class="three-column">
                 <div class="feature-card reveal">
-                    <h4>Stable</h4>
+                    <h4>🟢 Stable</h4>
                     <p>Tagged releases (vYYYY.M.D). npm dist-tag: <code>latest</code></p>
                 </div>
                 <div class="feature-card reveal">
-                    <h4>Beta</h4>
+                    <h4>🟡 Beta</h4>
                     <p>Prerelease tags (vYYYY.M.D-beta.N). npm dist-tag: <code>beta</code></p>
                 </div>
                 <div class="feature-card reveal">
-                    <h4>Dev</h4>
+                    <h4>🔴 Dev</h4>
                     <p>Moving head of main. npm dist-tag: <code>dev</code></p>
                 </div>
             </div>
             
-            <div class="code-block reveal" style="margin-top: 2rem;">
+            <div class="code-block reveal" style="margin-top: 1.5rem;">
 <span class="comment"># Switch channels</span><br>
 moltbot update --channel stable|beta|dev<br><br>
 
@@ -1214,7 +1512,7 @@ pnpm gateway:watch  <span class="comment"># Dev loop with auto-reload</span>
     <section class="slide" data-slide="16">
         <div class="slide-inner">
             <div class="slide-header reveal">
-                <span class="slide-tag">Extensibility</span>
+                <span class="slide-tag">🧩 Extensibility</span>
                 <span class="slide-number">16 / 24</span>
             </div>
             
@@ -1224,28 +1522,28 @@ pnpm gateway:watch  <span class="comment"># Dev loop with auto-reload</span>
                 <p>"Skills are modular, self-contained packages that extend Moltbot's capabilities."</p>
             </div>
             
-            <div class="three-column" style="margin-top: 2rem;">
+            <div class="three-column" style="margin-top: 1.5rem;">
                 <div class="feature-card reveal">
-                    <h4>Bundled Skills</h4>
+                    <h4>📦 Bundled Skills</h4>
                     <p>Shipped with Moltbot. Core functionality out of the box.</p>
                 </div>
                 <div class="feature-card reveal">
-                    <h4>Managed Skills</h4>
+                    <h4>🌐 Managed Skills</h4>
                     <p>Curated skills from the community registry. One-command install.</p>
                 </div>
                 <div class="feature-card reveal">
-                    <h4>Workspace Skills</h4>
+                    <h4>🔧 Workspace Skills</h4>
                     <p>Project-specific skills. Custom logic for your workflows.</p>
                 </div>
             </div>
             
-            <div class="two-column" style="margin-top: 2rem;">
+            <div class="two-column" style="margin-top: 1.5rem;">
                 <div class="reveal">
-                    <h4 style="font-family: var(--font-display);">Install Gating</h4>
+                    <h4 style="font-family: var(--font-display);" class="lobster-text">Install Gating</h4>
                     <p>Skills require explicit approval before installation. UI-guided setup for complex configurations.</p>
                 </div>
                 <div class="reveal">
-                    <h4 style="font-family: var(--font-display);">Skill Examples</h4>
+                    <h4 style="font-family: var(--font-display);" class="lobster-text">Skill Examples</h4>
                     <ul class="styled-list">
                         <li>Calendar management</li>
                         <li>Email processing</li>
@@ -1261,7 +1559,7 @@ pnpm gateway:watch  <span class="comment"># Dev loop with auto-reload</span>
     <section class="slide" data-slide="17">
         <div class="slide-inner">
             <div class="slide-header reveal">
-                <span class="slide-tag">Applications</span>
+                <span class="slide-tag">🎯 Applications</span>
                 <span class="slide-number">17 / 24</span>
             </div>
             
@@ -1305,7 +1603,7 @@ pnpm gateway:watch  <span class="comment"># Dev loop with auto-reload</span>
     <section class="slide" data-slide="18">
         <div class="slide-inner">
             <div class="slide-header reveal">
-                <span class="slide-tag">Market Analysis</span>
+                <span class="slide-tag">📊 Market Analysis</span>
                 <span class="slide-number">18 / 24</span>
             </div>
             
@@ -1323,7 +1621,7 @@ pnpm gateway:watch  <span class="comment"># Dev loop with auto-reload</span>
                 </thead>
                 <tbody>
                     <tr>
-                        <td><strong>Moltbot</strong></td>
+                        <td><strong class="lobster-text">🦞 Moltbot</strong></td>
                         <td>Self-hosted</td>
                         <td>13+ messaging</td>
                         <td>Local-first</td>
@@ -1360,8 +1658,8 @@ pnpm gateway:watch  <span class="comment"># Dev loop with auto-reload</span>
                 </tbody>
             </table>
             
-            <div class="feature-card reveal" style="margin-top: 2rem;">
-                <h4>Moltbot's Unique Position</h4>
+            <div class="feature-card reveal" style="margin-top: 1.5rem;">
+                <h4>🦞 Moltbot's Unique Position</h4>
                 <p>The only solution combining local-first deployment, multi-channel messaging integration, and voice/canvas UI in a single open-source package.</p>
             </div>
         </div>
@@ -1371,7 +1669,7 @@ pnpm gateway:watch  <span class="comment"># Dev loop with auto-reload</span>
     <section class="slide" data-slide="19">
         <div class="slide-inner">
             <div class="slide-header reveal">
-                <span class="slide-tag">Strategy</span>
+                <span class="slide-tag">📈 Strategy</span>
                 <span class="slide-number">19 / 24</span>
             </div>
             
@@ -1379,7 +1677,7 @@ pnpm gateway:watch  <span class="comment"># Dev loop with auto-reload</span>
             
             <div class="two-column">
                 <div class="reveal">
-                    <h3 style="font-family: var(--font-display); color: var(--accent);">Opportunities</h3>
+                    <h3 style="font-family: var(--font-display);" class="teal-text">Opportunities</h3>
                     <ul class="styled-list">
                         <li><strong>Enterprise Self-Hosting</strong> — Data sovereignty for regulated industries</li>
                         <li><strong>Integration Platform</strong> — Custom skills for business workflows</li>
@@ -1389,7 +1687,7 @@ pnpm gateway:watch  <span class="comment"># Dev loop with auto-reload</span>
                 </div>
                 
                 <div class="reveal">
-                    <h3 style="font-family: var(--font-display);">Considerations</h3>
+                    <h3 style="font-family: var(--font-display);" class="lobster-text">Considerations</h3>
                     <ul class="styled-list">
                         <li><strong>Operational Complexity</strong> — Self-hosted means self-managed</li>
                         <li><strong>Security Surface</strong> — DM access requires careful configuration</li>
@@ -1399,9 +1697,9 @@ pnpm gateway:watch  <span class="comment"># Dev loop with auto-reload</span>
                 </div>
             </div>
             
-            <div class="accent-line reveal" style="margin: 2rem 0;"></div>
+            <div class="accent-line reveal" style="margin: 1.5rem 0;"></div>
             
-            <p class="reveal">Moltbot represents a shift from "AI as a service" to "AI as infrastructure" — bringing intelligence closer to where work actually happens.</p>
+            <p class="reveal">Moltbot represents a shift from <span class="lobster-text">"AI as a service"</span> to <span class="lobster-text">"AI as infrastructure"</span> — bringing intelligence closer to where work actually happens.</p>
         </div>
     </section>
 
@@ -1409,7 +1707,7 @@ pnpm gateway:watch  <span class="comment"># Dev loop with auto-reload</span>
     <section class="slide" data-slide="20">
         <div class="slide-inner">
             <div class="slide-header reveal">
-                <span class="slide-tag">Integration</span>
+                <span class="slide-tag">🔌 Integration</span>
                 <span class="slide-number">20 / 24</span>
             </div>
             
@@ -1417,7 +1715,7 @@ pnpm gateway:watch  <span class="comment"># Dev loop with auto-reload</span>
             
             <div class="three-column">
                 <div class="reveal">
-                    <h3 style="font-family: var(--font-display);">Internal Tools</h3>
+                    <h3 style="font-family: var(--font-display);" class="teal-text">Internal Tools</h3>
                     <ul class="styled-list">
                         <li>CI/CD pipeline notifications</li>
                         <li>Incident response coordination</li>
@@ -1426,7 +1724,7 @@ pnpm gateway:watch  <span class="comment"># Dev loop with auto-reload</span>
                     </ul>
                 </div>
                 <div class="reveal">
-                    <h3 style="font-family: var(--font-display);">Customer Support</h3>
+                    <h3 style="font-family: var(--font-display);" class="teal-text">Customer Support</h3>
                     <ul class="styled-list">
                         <li>Ticket triage via Slack</li>
                         <li>FAQ automation</li>
@@ -1435,7 +1733,7 @@ pnpm gateway:watch  <span class="comment"># Dev loop with auto-reload</span>
                     </ul>
                 </div>
                 <div class="reveal">
-                    <h3 style="font-family: var(--font-display);">Knowledge Base</h3>
+                    <h3 style="font-family: var(--font-display);" class="teal-text">Knowledge Base</h3>
                     <ul class="styled-list">
                         <li>Document Q&A</li>
                         <li>Meeting transcription</li>
@@ -1445,7 +1743,7 @@ pnpm gateway:watch  <span class="comment"># Dev loop with auto-reload</span>
                 </div>
             </div>
             
-            <div class="diagram-container reveal" style="margin-top: 2rem;">
+            <div class="diagram-container reveal" style="margin-top: 1.5rem;">
                 <div class="arch-diagram">
                     <div class="arch-layer">
                         <div class="arch-box">Your App</div>
@@ -1455,7 +1753,7 @@ pnpm gateway:watch  <span class="comment"># Dev loop with auto-reload</span>
                     </div>
                     <div class="arch-arrow">↔</div>
                     <div class="arch-layer">
-                        <div class="arch-box highlight" style="min-width: 200px;">Moltbot Gateway</div>
+                        <div class="arch-box highlight" style="min-width: 180px;">🦞 Moltbot Gateway</div>
                     </div>
                     <div class="arch-arrow">↔</div>
                     <div class="arch-layer">
@@ -1472,7 +1770,7 @@ pnpm gateway:watch  <span class="comment"># Dev loop with auto-reload</span>
     <section class="slide" data-slide="21">
         <div class="slide-inner">
             <div class="slide-header reveal">
-                <span class="slide-tag">Risk Assessment</span>
+                <span class="slide-tag">⚠️ Risk Assessment</span>
                 <span class="slide-number">21 / 24</span>
             </div>
             
@@ -1482,36 +1780,36 @@ pnpm gateway:watch  <span class="comment"># Dev loop with auto-reload</span>
                 <div class="reveal">
                     <div class="feature-card" style="margin-bottom: 1rem;">
                         <h4>🔐 Prompt Injection</h4>
-                        <p><strong>Risk:</strong> Malicious input via messaging channels<br>
-                        <strong>Mitigation:</strong> DM pairing, Anthropic's injection resistance, allowlists</p>
+                        <p><strong class="lobster-text">Risk:</strong> Malicious input via messaging channels<br>
+                        <strong class="teal-text">Mitigation:</strong> DM pairing, Anthropic's injection resistance, allowlists</p>
                     </div>
                     <div class="feature-card" style="margin-bottom: 1rem;">
                         <h4>📊 Data Leakage</h4>
-                        <p><strong>Risk:</strong> Sensitive data sent to AI providers<br>
-                        <strong>Mitigation:</strong> Local models, careful PII handling, data classification</p>
+                        <p><strong class="lobster-text">Risk:</strong> Sensitive data sent to AI providers<br>
+                        <strong class="teal-text">Mitigation:</strong> Local models, careful PII handling, data classification</p>
                     </div>
                     <div class="feature-card">
                         <h4>⚡ Dependency Risk</h4>
-                        <p><strong>Risk:</strong> Multiple channel libraries, breaking changes<br>
-                        <strong>Mitigation:</strong> Lockfile management, staged rollouts, monitoring</p>
+                        <p><strong class="lobster-text">Risk:</strong> Multiple channel libraries, breaking changes<br>
+                        <strong class="teal-text">Mitigation:</strong> Lockfile management, staged rollouts, monitoring</p>
                     </div>
                 </div>
                 
                 <div class="reveal">
                     <div class="feature-card" style="margin-bottom: 1rem;">
                         <h4>🏗️ Infrastructure Load</h4>
-                        <p><strong>Risk:</strong> Gateway resource consumption<br>
-                        <strong>Mitigation:</strong> Resource limits, horizontal scaling, cloud deployment options</p>
+                        <p><strong class="lobster-text">Risk:</strong> Gateway resource consumption<br>
+                        <strong class="teal-text">Mitigation:</strong> Resource limits, horizontal scaling, cloud deployment options</p>
                     </div>
                     <div class="feature-card" style="margin-bottom: 1rem;">
                         <h4>👤 User Adoption</h4>
-                        <p><strong>Risk:</strong> Complexity vs. cloud alternatives<br>
-                        <strong>Mitigation:</strong> Clear onboarding, documentation, support channels</p>
+                        <p><strong class="lobster-text">Risk:</strong> Complexity vs. cloud alternatives<br>
+                        <strong class="teal-text">Mitigation:</strong> Clear onboarding, documentation, support channels</p>
                     </div>
                     <div class="feature-card">
                         <h4>📜 Compliance</h4>
-                        <p><strong>Risk:</strong> GDPR, HIPAA, SOC2 requirements<br>
-                        <strong>Mitigation:</strong> Audit trails, data residency, encryption at rest</p>
+                        <p><strong class="lobster-text">Risk:</strong> GDPR, HIPAA, SOC2 requirements<br>
+                        <strong class="teal-text">Mitigation:</strong> Audit trails, data residency, encryption at rest</p>
                     </div>
                 </div>
             </div>
@@ -1522,7 +1820,7 @@ pnpm gateway:watch  <span class="comment"># Dev loop with auto-reload</span>
     <section class="slide" data-slide="22">
         <div class="slide-inner">
             <div class="slide-header reveal">
-                <span class="slide-tag">Future</span>
+                <span class="slide-tag">🔮 Future</span>
                 <span class="slide-number">22 / 24</span>
             </div>
             
@@ -1530,7 +1828,7 @@ pnpm gateway:watch  <span class="comment"># Dev loop with auto-reload</span>
             
             <div class="two-column">
                 <div class="reveal">
-                    <h3 style="font-family: var(--font-display);">Near Term</h3>
+                    <h3 style="font-family: var(--font-display);" class="teal-text">Near Term</h3>
                     <ul class="styled-list">
                         <li><strong>Enhanced Canvas</strong> — Richer UI components, better interactivity</li>
                         <li><strong>More Channels</strong> — Additional messaging platform support</li>
@@ -1540,7 +1838,7 @@ pnpm gateway:watch  <span class="comment"># Dev loop with auto-reload</span>
                 </div>
                 
                 <div class="reveal">
-                    <h3 style="font-family: var(--font-display);">Long Term</h3>
+                    <h3 style="font-family: var(--font-display);" class="teal-text">Long Term</h3>
                     <ul class="styled-list">
                         <li><strong>Federation</strong> — Multi-gateway coordination</li>
                         <li><strong>Local LLM Optimization</strong> — Better on-device model support</li>
@@ -1550,7 +1848,7 @@ pnpm gateway:watch  <span class="comment"># Dev loop with auto-reload</span>
                 </div>
             </div>
             
-            <div class="quote-block reveal" style="margin-top: 2rem;">
+            <div class="quote-block reveal" style="margin-top: 1.5rem;">
                 <p>"The vision is an AI assistant that feels like part of your team — always available, deeply integrated, completely under your control."</p>
             </div>
         </div>
@@ -1560,7 +1858,7 @@ pnpm gateway:watch  <span class="comment"># Dev loop with auto-reload</span>
     <section class="slide" data-slide="23">
         <div class="slide-inner">
             <div class="slide-header reveal">
-                <span class="slide-tag">Summary</span>
+                <span class="slide-tag">📝 Summary</span>
                 <span class="slide-number">23 / 24</span>
             </div>
             
@@ -1569,30 +1867,30 @@ pnpm gateway:watch  <span class="comment"># Dev loop with auto-reload</span>
             <div class="three-column">
                 <div class="reveal">
                     <div class="stat-number">1</div>
-                    <h3 style="font-family: var(--font-display); margin: 1rem 0 0.5rem;">Local-First Architecture</h3>
+                    <h3 style="font-family: var(--font-display); margin: 1rem 0 0.5rem;" class="teal-text">Local-First Architecture</h3>
                     <p>Moltbot runs on your infrastructure, giving you control over data and reducing latency.</p>
                 </div>
                 <div class="reveal">
                     <div class="stat-number">2</div>
-                    <h3 style="font-family: var(--font-display); margin: 1rem 0 0.5rem;">Multi-Channel Magic</h3>
+                    <h3 style="font-family: var(--font-display); margin: 1rem 0 0.5rem;" class="teal-text">Multi-Channel Magic</h3>
                     <p>Meet users where they are — WhatsApp, Slack, Discord, and 10+ other platforms.</p>
                 </div>
                 <div class="reveal">
                     <div class="stat-number">3</div>
-                    <h3 style="font-family: var(--font-display); margin: 1rem 0 0.5rem;">Voice + Canvas</h3>
+                    <h3 style="font-family: var(--font-display); margin: 1rem 0 0.5rem;" class="teal-text">Voice + Canvas</h3>
                     <p>Beyond text chat: natural voice interaction and visual workspaces.</p>
                 </div>
             </div>
             
-            <div class="accent-line reveal" style="margin: 3rem auto;"></div>
+            <div class="accent-line reveal" style="margin: 2rem auto;"></div>
             
             <div class="two-column reveal">
                 <div>
-                    <h3 style="font-family: var(--font-display);">Why It Matters</h3>
+                    <h3 style="font-family: var(--font-display);" class="lobster-text">Why It Matters</h3>
                     <p>Moltbot represents a shift from cloud-dependent AI to personal, local intelligence — the next evolution of human-computer interaction.</p>
                 </div>
                 <div>
-                    <h3 style="font-family: var(--font-display);">Next Steps</h3>
+                    <h3 style="font-family: var(--font-display);" class="lobster-text">Next Steps</h3>
                     <p>Evaluate fit for your use case, prototype integration, and consider skills development for custom workflows.</p>
                 </div>
             </div>
@@ -1603,11 +1901,13 @@ pnpm gateway:watch  <span class="comment"># Dev loop with auto-reload</span>
     <section class="slide title-slide" data-slide="24">
         <div class="slide-inner">
             <div class="title-meta reveal">
-                <span class="slide-tag">Discussion</span>
+                <span class="slide-tag">🦞 Discussion</span>
                 <span>24 / 24</span>
             </div>
             
-            <h1 class="reveal" style="font-size: clamp(4rem, 10vw, 8rem);">Questions?</h1>
+            <div class="lobster-emoji reveal">🦞</div>
+            
+            <h1 class="reveal" style="font-size: clamp(2.5rem, 8vw, 5rem);">Questions?</h1>
             
             <div class="accent-line-large reveal"></div>
             
@@ -1631,14 +1931,19 @@ pnpm gateway:watch  <span class="comment"># Dev loop with auto-reload</span>
     <script>
         /* ===========================================
            SLIDE PRESENTATION CONTROLLER
+           Mobile-Optimized
            =========================================== */
         class SlidePresentation {
             constructor() {
                 this.slides = document.querySelectorAll('.slide');
                 this.navDots = document.getElementById('navDots');
                 this.progressBar = document.getElementById('progressBar');
+                this.prevBtn = document.getElementById('prevBtn');
+                this.nextBtn = document.getElementById('nextBtn');
                 this.currentSlide = 0;
                 this.totalSlides = this.slides.length;
+                this.touchStartY = 0;
+                this.touchEndY = 0;
                 
                 this.init();
             }
@@ -1648,7 +1953,15 @@ pnpm gateway:watch  <span class="comment"># Dev loop with auto-reload</span>
                 this.setupIntersectionObserver();
                 this.setupKeyboardNavigation();
                 this.setupTouchNavigation();
+                this.setupMobileButtons();
                 this.updateProgress();
+                
+                // Prevent default touch behaviors that interfere with scrolling
+                document.addEventListener('touchmove', (e) => {
+                    if (e.target.closest('.slide')) {
+                        e.preventDefault = null;
+                    }
+                }, { passive: true });
             }
 
             createNavDots() {
@@ -1656,6 +1969,10 @@ pnpm gateway:watch  <span class="comment"># Dev loop with auto-reload</span>
                     const dot = document.createElement('div');
                     dot.className = 'nav-dot' + (index === 0 ? ' active' : '');
                     dot.addEventListener('click', () => this.goToSlide(index));
+                    dot.addEventListener('touchend', (e) => {
+                        e.preventDefault();
+                        this.goToSlide(index);
+                    });
                     this.navDots.appendChild(dot);
                 });
             }
@@ -1688,11 +2005,13 @@ pnpm gateway:watch  <span class="comment"># Dev loop with auto-reload</span>
                         case 'ArrowRight':
                         case 'ArrowDown':
                         case ' ':
+                        case 'PageDown':
                             e.preventDefault();
                             this.nextSlide();
                             break;
                         case 'ArrowLeft':
                         case 'ArrowUp':
+                        case 'PageUp':
                             e.preventDefault();
                             this.prevSlide();
                             break;
@@ -1709,35 +2028,51 @@ pnpm gateway:watch  <span class="comment"># Dev loop with auto-reload</span>
             }
 
             setupTouchNavigation() {
-                let touchStartY = 0;
-                let touchEndY = 0;
+                let touchStartTime = 0;
+                let touchStartX = 0;
 
                 document.addEventListener('touchstart', (e) => {
-                    touchStartY = e.changedTouches[0].screenY;
+                    touchStartTime = Date.now();
+                    touchStartX = e.changedTouches[0].screenX;
+                    this.touchStartY = e.changedTouches[0].screenY;
                 }, { passive: true });
 
                 document.addEventListener('touchend', (e) => {
-                    touchEndY = e.changedTouches[0].screenY;
-                    this.handleSwipe(touchStartY, touchEndY);
+                    const touchEndTime = Date.now();
+                    const touchDuration = touchEndTime - touchStartTime;
+                    
+                    // Only handle quick swipes, not scrolls
+                    if (touchDuration > 300) return;
+
+                    const touchEndX = e.changedTouches[0].screenX;
+                    this.touchEndY = e.changedTouches[0].screenY;
+                    
+                    const diffX = touchStartX - touchEndX;
+                    const diffY = this.touchStartY - this.touchEndY;
+                    
+                    // Only handle horizontal swipes
+                    if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
+                        if (diffX > 0) {
+                            this.nextSlide();
+                        } else {
+                            this.prevSlide();
+                        }
+                    }
                 }, { passive: true });
             }
 
-            handleSwipe(startY, endY) {
-                const threshold = 50;
-                const diff = startY - endY;
-
-                if (Math.abs(diff) > threshold) {
-                    if (diff > 0) {
-                        this.nextSlide();
-                    } else {
-                        this.prevSlide();
-                    }
+            setupMobileButtons() {
+                if (this.prevBtn) {
+                    this.prevBtn.addEventListener('click', () => this.prevSlide());
+                }
+                if (this.nextBtn) {
+                    this.nextBtn.addEventListener('click', () => this.nextSlide());
                 }
             }
 
             goToSlide(index) {
                 if (index >= 0 && index < this.totalSlides) {
-                    this.slides[index].scrollIntoView({ behavior: 'smooth' });
+                    this.slides[index].scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             }
 
@@ -1766,8 +2101,12 @@ pnpm gateway:watch  <span class="comment"># Dev loop with auto-reload</span>
             }
         }
 
-        // Initialize
-        new SlidePresentation();
+        // Initialize when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => new SlidePresentation());
+        } else {
+            new SlidePresentation();
+        }
     </script>
 </body>
 </html>
